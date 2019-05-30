@@ -8,8 +8,12 @@ public class MergeSort {
 
 	public int[] sort(int[] values) {
 		// check for empty or null array
-		if (values == null || values.length == 0){
+		if (values == null){
 			return null;
+		}
+		// check for empty or null array
+		if (values.length == 0){
+			return values;
 		}
 		this.numbers = values;
 		number = values.length;
