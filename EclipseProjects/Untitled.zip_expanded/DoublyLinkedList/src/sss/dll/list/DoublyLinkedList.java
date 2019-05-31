@@ -111,7 +111,6 @@ public class DoublyLinkedList<E> implements List<E> {
 			else if (index == size - 1)
 				return removeLast();
 			else {
-				checkIndexValidity(index);
 				Node<E> node = node(index);
 				node.prev.next = node.next;
 				node.next.prev = node.prev;
@@ -179,6 +178,25 @@ public class DoublyLinkedList<E> implements List<E> {
 		return temp.item;
 	}
 
+	
+	
+	/**
+	 * Wrapper node class containing elements
+	 * @author shubham
+	 * @param <E>
+	 */
+	private static class Node<E> {
+		E item;
+		Node<E> prev;
+		Node<E> next;
+		
+		Node(E item, Node<E> prev, Node<E> next) {
+			this.item = item;
+			this.prev = prev;
+			this.next = next;
+		}
+	}
+
     private Node<E> createNode(E e) {
     	if (e == null)
     		throw new InvalidElementException();
@@ -214,23 +232,8 @@ public class DoublyLinkedList<E> implements List<E> {
 		return (index >= 0 && index < size);
 	}
 	
-	/**
-	 * Wrapper node class containing elements
-	 * @author shubham
-	 * @param <E>
-	 */
-	private static class Node<E> {
-		E item;
-		Node<E> prev;
-		Node<E> next;
-		
-		Node(E item, Node<E> prev, Node<E> next) {
-			this.item = item;
-			this.prev = prev;
-			this.next = next;
-		}
-	}
-
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */

@@ -7,6 +7,7 @@ public class BSTDemo {
 	      for(Integer n : a)
 	    	  bst.insert(n);
 
+	      System.out.println(bst.toString());
 	      System.out.println("11111111111111111111111111");
 	      bst.preOrderTraversal();
 	      System.out.println();

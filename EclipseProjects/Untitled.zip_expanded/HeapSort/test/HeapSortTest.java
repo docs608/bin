@@ -1,13 +1,11 @@
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import java.util.Arrays;
 import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class MergeSortTest {
+public class HeapSortTest {
 	private int[] numbers;
 	private final static int SIZE = 7;
 	private final static int MAX = 20;
@@ -28,38 +26,38 @@ public class MergeSortTest {
 	
 	@Test
 	public void testNull() {
-		MergeSort sorter = new MergeSort();
+		HeapSort sorter = new HeapSort();
 		sorter.sort(null);
 	}
 	
 	@Test
 	public void testEmpty() {
-		MergeSort sorter = new MergeSort();
+		HeapSort sorter = new HeapSort();
 		sorter.sort(new int[0]);
 	}
 	
 	@Test
 	public void testSimpleElement() {
-		MergeSort sorter = new MergeSort();
+		HeapSort sorter = new HeapSort();
 		int[] elements = {5};
 		sorter.sort(elements);
 	}
 
 	@Test
 	public void testSpecial() {
-		MergeSort sorter = new MergeSort();
+		HeapSort sorter = new HeapSort();
 		int[] elements = {-3, 2, 2, 5, 5, 2, 8, 7, -9, 6, 5};
 		sorter.sort(elements);
 		assertTrue(validate(elements));
 	}
 
 	@Test
-	public void testMergeSort() {
+	public void testHeapSort() {
 		for (Integer integer : numbers) {
 			System.out.print(integer + ", ");
 		}
 		System.out.println();
-		MergeSort sorter = new MergeSort();
+		HeapSort sorter = new HeapSort();
 		sorter.sort(numbers);
 		for (Integer integer : numbers) {
 			System.out.print(integer + ", ");
@@ -79,5 +77,4 @@ public class MergeSortTest {
 		}
 		return true;
 	}
-	
 }
