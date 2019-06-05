@@ -8,29 +8,26 @@ import java.util.Iterator;
  * @author shubham
  * @param <E> the elements going to be stored in the nodes of the tree.
  */
-public interface BinaryTree<E> {
+public interface BinaryTree<T> {
+	
 	/**
 	 * Inserts the data in the tree.
 	 * @param data
 	 */
-	void insert(E data);
+	void insert(T data);
 	
 	/**
 	 * Deletes the data in the tree.
 	 * @param toDelete
 	 */
-	void delete(E toDelete);
+	void delete(T toDelete);
 	
 	/**
 	 * Searches the element in the binary tree
 	 * @param toSearch the element to search
 	 * @return returns true if the element is found
 	 */
-	boolean search(E toSearch);
-	
-	void preOrderTraversal();
-	void inOrderTraversal();
-	void postOrderTraversal();
+	boolean search(T toSearch);
 	
 	/**
 	 * Uses the iterator implemented in the binary tree and prints the Binary Tree
@@ -45,11 +42,6 @@ public interface BinaryTree<E> {
 	int height();
 	
 	/**
-	 * @return the total number of leaves in the Binary Tree
-	 */
-	int countLeaves();
-	
-	/**
 	 * @return the width of the Binary Tree
 	 */
 	int width();
@@ -60,20 +52,45 @@ public interface BinaryTree<E> {
 	int diameter();
 	
 	/**
+	 * @return the total number of leaves in the Binary Tree
+	 */
+	int countLeaves();
+	
+	/**
+	 * prints preOrderTraversal of the binary tree.
+	 */
+	void preOrderTraversal();
+	
+	/**
+	 * prints inOrderTraversal of the binary tree.
+	 */
+	void inOrderTraversal();
+	
+	/**
+	 * prints postOrderTraversal of the binary tree.
+	 */
+	void postOrderTraversal();
+	
+	/**
+	 * prints levelOrderTraversal of the binary tree.
+	 */
+	void levelOrderTraversal();
+
+	/**
 	 * @return the clone of the Binary Tree invoking this method
 	 */
-	BinaryTree<E> clone();
+	BinaryTree<T> clone();
 	
 	/**
 	 * It replaces the tree nodes with the new tree nodes whose pre-order
 	 * traversal and in-order traversal array will be given.
-	 * @param pre pre-order-traversal array
-	 * @param in in-order-traversal array
+	 * @param preOrder pre-order-traversal array
+	 * @param inOrder in-order-traversal array
 	 */
-	void restore(E[] pre, E[] in);
+	void restore(T[] preOrder, T[] inOrder);
 	
 	/**
 	 * @return the iterator for the Binary tree.
 	 */
-	Iterator<E> iterator();
+	Iterator<T> iterator();
 }

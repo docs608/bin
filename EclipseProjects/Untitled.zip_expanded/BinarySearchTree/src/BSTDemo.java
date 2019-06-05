@@ -2,12 +2,19 @@ import sss.bst.binary_tree.BinarySearchTree;
 
 public class BSTDemo {
 	public static void main(String args[]) {
-	      Integer[] a = {1, 5, 2, 4, 7};
+	      Integer[] a = {1, 5, 2, 4, 7, 6, 9};
 	      BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
 	      for(Integer n : a)
 	    	  bst.insert(n);
 
+	      bst.levelOrderTraversal();
+	      bst.preOrderTraversal();
+	      bst.inOrderTraversal();
+	      bst.postOrderTraversal();
 	      System.out.println(bst.toString());
+	      System.out.println("width: " + bst.width());
+	      System.out.println("height: " + bst.height());
+	      System.out.println("diameter: " + bst.diameter());
 	      System.out.println("11111111111111111111111111");
 	      bst.preOrderTraversal();
 	      System.out.println();

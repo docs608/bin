@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Stack;
 
+import org.ietf.jgss.Oid;
+
 /**
  * The concrete BST implementation class of Binary Tree interface.
  * 
@@ -109,9 +111,9 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 		if (compareResult == 0)
 			return true;
 		else if (compareResult < 0)
-			return search(node.left, toSearch);
-		else
 			return search(node.right, toSearch);
+		else
+			return search(node.left, toSearch);
 	}
 
 	/**
@@ -119,6 +121,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	 */
 	public	void preOrderTraversal() {
 		preOrderTraversal(root);
+		System.out.println();
 	}
 
 	private void preOrderTraversal(Node<T> node) {
@@ -134,6 +137,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	 */
 	public	void inOrderTraversal() {
 		inOrderTraversal(root);
+		System.out.println();
 	}
 
 	private void inOrderTraversal(Node<T> node) {
@@ -147,8 +151,9 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	public	void postOrderTraversal() {
+	public void postOrderTraversal() {
 		postOrderTraversal(root);
+		System.out.println();
 	}
 
 	private void postOrderTraversal(Node<T> node) {
@@ -156,6 +161,29 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 			postOrderTraversal(node.left);
 			postOrderTraversal(node.right);
 			System.out.print(node + " ");
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void levelOrderTraversal() {
+		for (int i = 1; i <= height(); i++) {
+			levelOrderTraversal(root, i);
+			System.out.println();
+		}
+	}
+
+	private void levelOrderTraversal(Node<T> node, int level) {
+		if (node == null) {
+			return;
+		} else {
+			if (level == 1) {
+				System.out.print(node.data + ", ");
+			} else if (level > 1) {
+				levelOrderTraversal(node.left, level - 1);
+				levelOrderTraversal(node.right, level - 1);
+			}
 		}
 	}
 	
@@ -180,7 +208,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 
 	private int height(Node<T> node) {
 		if (node == null)
-			return -1;
+			return 0;
 		else
 			return 1 + Math.max(height(node.left), height(node.right));
 	}
@@ -206,7 +234,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	 */
 	public	int width() {
 		int max = 0;
-		for (int i = 0; i <= height(); i++) {
+		for (int i = 0; i <= height() - 1; i++) {
 			int temp = width(root, i);
 			if (temp > max)
 				max = temp;
@@ -234,7 +262,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 		if (node == null)
 			return 0;
 
-		int nodeIncluded = height(node.left) + height(node.right) + 3;
+		int nodeIncluded = height(node.left) + height(node.right) + 1;
 		int nodeNotincluded = Math.max(diameter(node.left), diameter(node.right));
 		
 		return Math.max(nodeIncluded, nodeNotincluded);
@@ -284,42 +312,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 		return null;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	public	Iterator<T> iterator() {
-		return new MyIterator();
-	}
-	
-	private class MyIterator implements Iterator<T> {
-		Stack<Node<T>> stack = new Stack<Node<T>>();
-		
-		public MyIterator() {
-			if (root != null)
-				stack.push(root);
-		}
 
-		public boolean hasNext(){
-			return (!stack.empty());
-		}
-
-		// Gives the nodes in inorder
-		public T next() {
-			Node<T> current = stack.peek();
-			if (current.left != null)
-				stack.push(current.left);
-			else {
-				Node<T> temp = stack.pop();
-				while (temp.right == null) {
-					if (stack.isEmpty())
-						return current.data;
-					temp = stack.pop();
-				}
-				stack.push(temp.right);
-			}
-			return current.data;
-		}
-	}
 	
 	// Generic node class of the Binary tree.
 	private static class Node<T> {
@@ -341,6 +334,43 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 		
 		public String toString() {
 			return data.toString();
+		}
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public	Iterator<T> iterator() {
+		return new MyIterator();
+	}
+	
+	private class MyIterator implements Iterator<T> {
+		Stack<Node<T>> stack = new Stack<Node<T>>();
+		
+		public MyIterator() {
+			if (root != null)
+				stack.push(root);
+		}
+
+		public boolean hasNext(){
+			return (!stack.empty());
+		}
+
+		// Gives the nodes in preOrder
+		public T next() {
+			Node<T> current = stack.peek();
+			if (current.left != null)
+				stack.push(current.left);
+			else {
+				Node<T> temp = stack.pop();
+				while (temp.right == null) {
+					if (stack.isEmpty())
+						return current.data;
+					temp = stack.pop();
+				}
+				stack.push(temp.right);
+			}
+			return current.data;
 		}
 	}
 }

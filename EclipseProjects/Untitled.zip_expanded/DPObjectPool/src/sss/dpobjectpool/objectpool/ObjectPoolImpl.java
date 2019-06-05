@@ -21,7 +21,7 @@ public abstract class ObjectPoolImpl<T> implements ObjectPool<T> {
 	 * will be created. When the number of objects is greater than the maximum, 
 	 * too many instances will be removed.
 	 */
-	private ScheduledExecutorService executorService;  
+	private ScheduledExecutorService scheduledExecutorService;  
 
 	/**
 	 * Creates the pool.
@@ -50,8 +50,8 @@ public abstract class ObjectPoolImpl<T> implements ObjectPool<T> {
 		// initialize pool  
 		initialize(minObjects);  
 		// check pool conditions in a separate thread  
-		executorService = Executors.newSingleThreadScheduledExecutor();
-		executorService.scheduleWithFixedDelay(new Runnable() {
+		scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+		scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
 			@Override  
 			public void run() {  
 				int size = pool.size();  
@@ -69,7 +69,7 @@ public abstract class ObjectPoolImpl<T> implements ObjectPool<T> {
 				}  
 			}  
 		}, validationInterval, validationInterval, TimeUnit.SECONDS);  
-	}  
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -96,8 +96,8 @@ public abstract class ObjectPoolImpl<T> implements ObjectPool<T> {
 	 * {@inheritDoc}
 	 */
 	public void shutdown(){  
-		if (executorService != null){  
-			executorService.shutdown();  
+		if (scheduledExecutorService != null){  
+			scheduledExecutorService.shutdown();  
 		}  
 	}
 

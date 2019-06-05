@@ -37,7 +37,7 @@ public class ObjectPoolDemo{
 			}
 		};  
 	}
-	public void tearDown() {  
+	public void tearDown() {
 		pool.shutdown();  
 	}
 	public void testObjectPool() {

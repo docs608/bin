@@ -17,8 +17,10 @@ public class DLLDemo {
 		printWriter.println(itr.next());
 		printWriter.println(itr.next());
 		printWriter.println(itr.next());
+		System.out.println("1111111111111111111111111111111111");
 		printWriter.println(itr.prev());
 		printWriter.println(itr.prev());
+		System.out.println("2222222222222222222222222222222222");
 		printWriter.println(itr.next());
 		printWriter.println(itr.prev());
 		printWriter.println(itr.next());

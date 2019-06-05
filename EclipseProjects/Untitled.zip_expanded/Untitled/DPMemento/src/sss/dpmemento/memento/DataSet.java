@@ -1,6 +1,6 @@
 package sss.dpmemento.memento;
 
-public class DataSet {
+public class DataSet implements Cloneable {
 	private int id;
 	private String str;
 	
@@ -20,5 +20,14 @@ public class DataSet {
 	
 	public void setStr(String str) {
 		this.str = str;
+	}
+
+	@Override
+	public DataSet clone() {
+		return new DataSet(this.id, this.str);
+	}
+	
+	public String toString() {
+		return "id: " + id + ", str: " + str;
 	}
 }

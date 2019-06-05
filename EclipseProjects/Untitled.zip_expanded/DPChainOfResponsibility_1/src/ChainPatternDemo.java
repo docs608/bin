@@ -9,11 +9,14 @@ public class ChainPatternDemo {
 
       loggerChain.logMessage(LogLevel.INFO, 
          "This is an information.");
+      System.out.println();
 
       loggerChain.logMessage(LogLevel.DEBUG, 
          "This is an debug level information.");
+      System.out.println();
 
       loggerChain.logMessage(LogLevel.ERROR, 
          "This is an error information.");
+      System.out.println();
    }
 }

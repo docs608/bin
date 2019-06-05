@@ -1,14 +1,20 @@
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
+
 public class ShutdownHookDemo {
 
 	// a class that extends thread that is to be called when program is exiting
 	static class Message extends Thread {
 
 		public void run() {
+			System.out.println("Run method of message class called.");
 			System.out.println("Bye.");
 		}
 	}
 
 	public static void main(String[] args) {
+
+		System.out.println("Main thread name: " + Thread.currentThread().getName());
 		/*
 		 * setDefaultUncaughtExceptionHandler method sets the default handler
 		 * which is called when a thread terminates due to an
@@ -33,6 +39,8 @@ public class ShutdownHookDemo {
 			System.out.println("Waiting for 3 seconds...");
 			Thread.sleep(3000);
 
+			int i = 100 / 0;
+			
 			// print that the program is closing 
 			System.out.println("Program is closing...");
 

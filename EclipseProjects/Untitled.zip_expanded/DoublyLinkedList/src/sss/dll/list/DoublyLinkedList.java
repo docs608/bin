@@ -253,7 +253,6 @@ public class DoublyLinkedList<E> implements List<E> {
 	 * @author shubham
 	 */
 	private class DLLIteratorImpl implements Iterator<E> {
-		private Node<E> lastReturned;
 		private Node<E> next;
 		private int nextIndex = 0;
 
@@ -262,8 +261,8 @@ public class DoublyLinkedList<E> implements List<E> {
 		 * @param index initial position.
 		 */
 		DLLIteratorImpl(int index) {
-			next = (index == size) ? null : node(index);
 			nextIndex = index;
+			next = (index == size) ? null : node(index);
 		}
 		
 		/**
@@ -279,10 +278,10 @@ public class DoublyLinkedList<E> implements List<E> {
 		public E next() {
 			if (!hasNext())
 				throw new NoSuchElementException();
-			lastReturned = next;
+			Node<E> temp = next;
 			next = next.next;
 			nextIndex++;
-			return lastReturned.item;
+			return temp.item;
 		}
 
 		/**
@@ -298,9 +297,9 @@ public class DoublyLinkedList<E> implements List<E> {
 		public E prev() {
 			if (!hasPrev())
 				throw new NoSuchElementException();
-			lastReturned = next = (next == null) ? last : next.prev;
+			next = (next == null) ? last : next.prev;
 			nextIndex--;
-			return lastReturned.item;
+			return next.item;
 		}
 	}
 	
