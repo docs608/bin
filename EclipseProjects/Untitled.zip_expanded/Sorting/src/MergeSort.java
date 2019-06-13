@@ -1,10 +1,13 @@
 
 public class MergeSort implements Sort {
 	
+	int[] helper;
+	
 	public int[] sort(int[] arr) {
 		if (arr == null || arr.length == 0) {
 			return arr;
 		}
+		helper = new int[arr.length];
 		mergeSort(arr, 0, arr.length - 1);
 		return arr;
 	}
@@ -19,11 +22,9 @@ public class MergeSort implements Sort {
 	}
 	
 	private void merge(int[] arr, int low, int middle, int high) {
-		int[] helper = new int[arr.length];
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = low; i <= high; i++) {
 			helper[i] = arr[i];
 		}
-		
 		int i = low;
 		int j = middle + 1;
 		int k = low;

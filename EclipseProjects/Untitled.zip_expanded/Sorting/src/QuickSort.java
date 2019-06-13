@@ -2,7 +2,7 @@
 public class QuickSort implements Sort {
 	
 	public int[] sort(int[] arr) {
-		if (arr == null || arr.length == 0) {
+		if (arr == null || arr.length <= 1) {
 			return arr;
 		}
 		quickSort(arr, 0, arr.length - 1);

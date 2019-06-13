@@ -119,6 +119,87 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	/**
 	 * {@inheritDoc}
 	 */
+	public	String toString() {
+		StringBuffer bstString = new StringBuffer();
+		for (T x : this)
+			bstString = bstString.append(x + " ");
+		
+		return bstString.toString();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public	int height() {
+		int height = height(root);
+		return (height < 0) ? 0 : height;
+	}
+
+	private int height(Node<T> node) {
+		if (node == null)
+			return 0;
+		else
+			return 1 + Math.max(height(node.left), height(node.right));
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public	int width() {
+		int max = 0;
+		for (int i = 0; i < height(); i++) {
+			int temp = width(root, i);
+			if (temp > max)
+				max = temp;
+		}
+		return max;
+	}
+	
+	private int width(Node<T> node, int depth) {
+		if (node == null)
+			return 0;
+		if (depth == 0)
+			return 1;
+		else
+			return width(node.left, depth - 1) + width(node.right, depth - 1);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public	int diameter() {
+		return diameter(root);
+	}
+	
+	private int diameter(Node<T> node) {
+		if (node == null)
+			return 0;
+
+		int nodeIncluded = height(node.left) + height(node.right) + 1;
+		int nodeNotincluded = Math.max(diameter(node.left), diameter(node.right));
+		
+		return Math.max(nodeIncluded, nodeNotincluded);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public	int countLeaves() {
+		return countLeaves(root);
+	}
+	
+	private int countLeaves(Node<T> node) {
+		if (node == null)
+			return 0;
+		else if (node.left == null && node.right == null)
+			return 1;
+		else
+			return countLeaves(node.left) + countLeaves(node.right);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public	void preOrderTraversal() {
 		preOrderTraversal(root);
 		System.out.println();
@@ -168,7 +249,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	 * {@inheritDoc}
 	 */
 	public void levelOrderTraversal() {
-		for (int i = 1; i <= height(); i++) {
+		for (int i = 0; i < height(); i++) {
 			levelOrderTraversal(root, i);
 			System.out.println();
 		}
@@ -178,96 +259,15 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 		if (node == null) {
 			return;
 		} else {
-			if (level == 1) {
+			if (level == 0) {
 				System.out.print(node.data + ", ");
-			} else if (level > 1) {
+			} else {
 				levelOrderTraversal(node.left, level - 1);
 				levelOrderTraversal(node.right, level - 1);
 			}
 		}
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	public	String toString() {
-		StringBuffer bstString = new StringBuffer();
-		for (T x : this)
-			bstString = bstString.append(x + " ");
-		
-		return bstString.toString();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public	int height() {
-		int height = height(root);
-		return (height < 0) ? 0 : height;
-	}
-
-	private int height(Node<T> node) {
-		if (node == null)
-			return 0;
-		else
-			return 1 + Math.max(height(node.left), height(node.right));
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	public	int countLeaves() {
-		return countLeaves(root);
-	}
-	
-	private int countLeaves(Node<T> node) {
-		if (node == null)
-			return 0;
-		else if (node.left == null && node.right == null)
-			return 1;
-		else
-			return countLeaves(node.left) + countLeaves(node.right);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public	int width() {
-		int max = 0;
-		for (int i = 0; i <= height() - 1; i++) {
-			int temp = width(root, i);
-			if (temp > max)
-				max = temp;
-		}
-		return max;
-	}
-	
-	private int width(Node<T> node, int depth) {
-		if (node == null)
-			return 0;
-		if (depth == 0)
-			return 1;
-		else
-			return width(node.left, depth - 1) + width(node.right, depth - 1);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public	int diameter() {
-		return diameter(root);
-	}
-	
-	private int diameter(Node<T> node) {
-		if (node == null)
-			return 0;
-
-		int nodeIncluded = height(node.left) + height(node.right) + 1;
-		int nodeNotincluded = Math.max(diameter(node.left), diameter(node.right));
-		
-		return Math.max(nodeIncluded, nodeNotincluded);
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */

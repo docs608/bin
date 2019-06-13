@@ -45,7 +45,7 @@ public class SortTest {
 	}
 
 	@Test
-	public void testMergeSort() {
+	public void testSort() {
 		SortingUtility.printArray(numbers);
 		sorter.sort(numbers);
 		SortingUtility.printArray(numbers);
