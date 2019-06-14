@@ -1,4 +1,4 @@
-package sss.bst.binary_tree;
+package sss.binarytree.avl;
 
 import java.util.Iterator;
 
@@ -44,7 +44,7 @@ public interface BinaryTree<T> {
 	/**
 	 * @return returns the height of the Binary Tree
 	 */
-	int height();
+	int height1();
 	
 	/**
 	 * @return the width of the Binary Tree

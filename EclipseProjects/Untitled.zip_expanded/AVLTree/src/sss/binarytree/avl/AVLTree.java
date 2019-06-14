@@ -1,4 +1,4 @@
-package sss.bst.binary_tree;
+package sss.binarytree.avl;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,16 +14,114 @@ import java.util.Stack;
  * @author shubham
  * @param <T> the data type being stored in the nodes of the tree
  */
-public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
+public class AVLTree<T extends Comparable<T>> implements BinaryTree<T>,
                                 Iterable<T>{
 	
+	private Node<T> balancingOperations(Node<T> node, T value) {
+    	
+        /* 2. Update height of this ancestor node */
+        node.height = Math.max(height(node.left), height(node.right)) + 1;
+
+        /* 3. Get the balance factor of this ancestor node to check whether
+           this node became unbalanced */
+        int balanceFactorOfNode = getBalance(node);
+
+        // If this node becomes unbalanced, then there are 4 cases
+
+        // Left Left Case
+        // compare(node.left.data, value) > 0 => value < node.left.data
+        if (balanceFactorOfNode > 1 && getBalance(node.left) >= 0)
+            return rightRotate(node);
+
+        // Left Right Case
+        if (balanceFactorOfNode > 1 && getBalance(node.left) < 0) {
+            node.left =  leftRotate(node.left);
+            return rightRotate(node);
+        }
+
+        // Right Right Case
+        if (balanceFactorOfNode < -1 && getBalance(node.right) <= 0)
+            return leftRotate(node);
+
+        // Right Left Case
+        if (balanceFactorOfNode < -1 && getBalance(node.right) > 0) {
+            node.right = rightRotate(node.right);
+            return leftRotate(node);
+        }
+        
+        return node;
+    }
+    
+	private int height(Node<?> N) {
+		if (N == null)
+			return 0;
+		return N.height;
+	}
+
+//	private int height(Node<T> node) {
+//		if (node == null)
+//			return 0;
+//		else
+//			return 1 + Math.max(height1(node.left), height1(node.right));
+//	}
+//	
+	
+    private Node<T> rightRotate(Node<T> node) {
+        Node<T> node_left = node.left;
+        Node<T> node_left_right = node_left.right;
+
+        // Perform rotation
+        node_left.right = node;
+        node.left = node_left_right;
+
+        // Update heights
+        node.height = Math.max(height(node.left), height(node.right))+1;
+        node_left.height = Math.max(height(node_left.left), height(node_left.right))+1;
+
+        // Return new root
+        return node_left;
+    }
+
+    private Node<T> leftRotate(Node<T> node) {
+        Node<T> node_right = node.right;
+        Node<T> node_right_left = node_right.left;
+
+        // Perform rotation
+        node_right.left = node;
+        node.right = node_right_left;
+
+        //  Update heights
+        node.height = Math.max(height(node.left), height(node.right))+1;
+        node_right.height = Math.max(height(node_right.left), height(node_right.right))+1;
+
+        // Return new root
+        return node_right;
+    }
+
+    // Get Balance factor of node N
+    private int getBalance(Node<T> N) {
+        if (N == null)
+            return 0;
+        return height(N.left) - height(N.right);
+    }
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
 	private Node<T> root; // Root of the tree
 	private Comparator<T> comparator; // Comparator to compare the elements.
 	
-	public BinarySearchTree() {
+	public AVLTree() {
 	}
 	
-	public BinarySearchTree(Comparator<T> comparator) {
+	public AVLTree(Comparator<T> comparator) {
 		this.comparator = comparator;
 	}
 
@@ -42,23 +140,28 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 		root = insert(root, data);
 	}
 
-	private Node<T> insert(Node<T> node, T data) {
-		if (node == null)
-			return new Node<T>(data);
-		
-		int compareResult = compare(node.data, data);
+    private Node<T> insert(Node<T> node, T value) {
+        /* 1.  Perform the normal BST rotation */
+        if (node == null) {
+            return(new Node<T>(value));
+        }
+
+		int compareResult = compare(node.data, value);
 		
 		if (compareResult == 0)
 			return node;
 		
-		if (compareResult < 0)
-			node.right = insert(node.right, data);
-		else
-			node.left = insert(node.left, data);
-		
-		return node;
-	}
-	
+        if (compareResult > 0)
+            node.left  = insert(node.left, value);
+        else
+            node.right = insert(node.right, value);
+
+        node = balancingOperations(node, value);
+
+        /* return the (unchanged) node pointer */
+        return node;
+    }
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -67,6 +170,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	}
 	
 	private Node<T> delete(Node<T> node, T toDelete) {
+		// STEP 1: PERFORM STANDARD BST DELETE 
 		if (node == null)
 			throw new NoSuchElementException();
 		
@@ -82,17 +186,20 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 			else if (node.right == null)
 				return node.left;
 			else {
-//				node.data = inorderPredecessor(node.left);
-//				node.left = delete(node.left, node.data);
-				node.data = inorderSuccessor(node.right);
-				node.right = delete(node.right, node.data);
+				node.data = inorderPredecessor(node.left);
+				node.left = delete(node.left, node.data);
 			}
 		}
-		
-		return node;
-	}
 
-	private T inorderPredecessor(Node<T> node) {
+		// If the tree had only one node then return 
+		if (node == null) 
+			return null;
+		node = balancingOperations(node, toDelete);
+		
+		return node; 
+	} 
+	
+    private T inorderPredecessor(Node<T> node) {
 		while (node.right != null)
 			node = node.right;
 		return node.data;
@@ -139,16 +246,16 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	public	int height() {
-		int height = height(root);
+	public int height1() {
+		int height = height1(root);
 		return (height < 0) ? 0 : height;
 	}
 
-	private int height(Node<T> node) {
+	private int height1(Node<T> node) {
 		if (node == null)
 			return 0;
 		else
-			return 1 + Math.max(height(node.left), height(node.right));
+			return 1 + Math.max(height1(node.left), height1(node.right));
 	}
 	
 	/**
@@ -156,7 +263,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	 */
 	public	int width() {
 		int max = 0;
-		for (int i = 0; i < height(); i++) {
+		for (int i = 0; i < height1(); i++) {
 			int temp = width(root, i);
 			if (temp > max)
 				max = temp;
@@ -184,7 +291,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 		if (node == null)
 			return 0;
 
-		int nodeIncluded = height(node.left) + height(node.right) + 1;
+		int nodeIncluded = height1(node.left) + height1(node.right) + 1;
 		int nodeNotincluded = Math.max(diameter(node.left), diameter(node.right));
 		
 		return Math.max(nodeIncluded, nodeNotincluded);
@@ -258,7 +365,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	 * {@inheritDoc}
 	 */
 	public void levelOrderTraversal() {
-		for (int i = 0; i < height(); i++) {
+		for (int i = 0; i < height1(); i++) {
 			levelOrderTraversal(root, i);
 			System.out.println();
 		}
@@ -281,16 +388,16 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	 * {@inheritDoc}
 	 */
 	public	BinaryTree<T> clone() {
-		BinarySearchTree<T> bst;
+		AVLTree<T> avl;
 		
 		if (this.comparator == null)
-			bst = new BinarySearchTree<T>();
+			avl = new AVLTree<T>();
 		else
-			bst = new BinarySearchTree<T>(comparator);
+			avl = new AVLTree<T>(comparator);
 		
-		bst.root = clone(root);
+		avl.root = clone(root);
 		
-		return bst;
+		return avl;
 	}
 	
 	private Node<T> clone(Node<T> node) {
@@ -321,8 +428,30 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 		return null;
 	}
 	
+	private static class Node<T> {
+		T data;
+		int height = 1;
+		Node<T> left;
+		Node<T> right;
+		Node<T> parent;
+		
+		public Node(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+		
+		public Node(T data, Node<T> left, Node<T> right) {
+			this.data = data;
+			this.left = left;
+			this.right = right;
+		}
+		
+		public String toString() {
+			return data.toString();
+		}
+	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -365,40 +494,20 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 		BinaryTreePrinter.printNode(root);
 	}
 	
-	// Generic node class of the Binary tree.
-	static class Node<T> {
-		T data;
-		Node<T> left;
-		Node<T> right;
-		
-		public Node(T data) {
-			this.data = data;
-			this.left = null;
-			this.right = null;
-		}
-		
-		public Node(T data, Node<T> left, Node<T> right) {
-			this.data = data;
-			this.left = left;
-			this.right = right;
-		}
-		
-		public String toString() {
-			return data.toString();
-		}
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	static class BinaryTreePrinter {
+	private static class BinaryTreePrinter {
 
 	    public static <T extends Comparable<?>> void printNode(Node<T> root) {
 	        int maxLevel = BinaryTreePrinter.maxLevel(root);

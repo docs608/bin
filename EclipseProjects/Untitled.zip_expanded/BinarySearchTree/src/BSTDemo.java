@@ -7,15 +7,21 @@ public class BSTDemo {
 	      for(Integer n : a)
 	    	  bst.insert(n);
 
+	      bst.printInTreeFormat();
 	      bst.levelOrderTraversal();
+	      System.out.println();
+	      
 	      bst.preOrderTraversal();
 	      bst.inOrderTraversal();
 	      bst.postOrderTraversal();
+	      System.out.println();
+	      
 	      System.out.println(bst.toString());
 	      System.out.println("width: " + bst.width());
 	      System.out.println("height: " + bst.height());
 	      System.out.println("diameter: " + bst.diameter());
-	      System.out.println("11111111111111111111111111");
+	      System.out.println();
+	      
 	      bst.preOrderTraversal();
 	      System.out.println();
 	      System.out.println("Height of the tree: " + bst.height()); 
