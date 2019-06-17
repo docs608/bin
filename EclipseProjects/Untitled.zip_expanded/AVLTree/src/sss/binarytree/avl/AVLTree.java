@@ -29,21 +29,26 @@ public class AVLTree<T extends Comparable<T>> implements BinaryTree<T>,
         // If this node becomes unbalanced, then there are 4 cases
 
         // Left Left Case
-        // compare(node.left.data, value) > 0 => value < node.left.data
+        // getBalance(node.left) = 1 when element will be inserted in node.left.left subtree or deleted in node.right subtree.
+        // getBalance(node.left) will not be zero in case of insert. It is for delete case in node.right subtree.
         if (balanceFactorOfNode > 1 && getBalance(node.left) >= 0)
             return rightRotate(node);
 
         // Left Right Case
+        // getBalance(node.left) = -1 when element will be inserted in node.left.right subtree or deleted in node.right subtree.
         if (balanceFactorOfNode > 1 && getBalance(node.left) < 0) {
             node.left =  leftRotate(node.left);
             return rightRotate(node);
         }
 
         // Right Right Case
+        // getBalance(node.right) = -1 when element will be inserted in node.right.right subtree or deleted in node.left subtree.
+        // getBalance(node.right) will not be zero in case of insert. It is for delete case in node.left subtree.
         if (balanceFactorOfNode < -1 && getBalance(node.right) <= 0)
             return leftRotate(node);
 
         // Right Left Case
+        // getBalance(node.right) = 1 when element will be inserted in node.right.left subtree or deleted in node.left subtree.
         if (balanceFactorOfNode < -1 && getBalance(node.right) > 0) {
             node.right = rightRotate(node.right);
             return leftRotate(node);

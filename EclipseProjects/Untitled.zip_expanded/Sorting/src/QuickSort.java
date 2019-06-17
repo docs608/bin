@@ -5,7 +5,8 @@ public class QuickSort implements Sort {
 		if (arr == null || arr.length <= 1) {
 			return arr;
 		}
-		quickSort(arr, 0, arr.length - 1);
+//		quickSort(arr, 0, arr.length - 1);
+		quickSortTailRecursive(arr, 0, arr.length - 1);
 		return arr;
 	}
 	
@@ -14,6 +15,16 @@ public class QuickSort implements Sort {
 			int partitionedIndex = partition(arr, low, high);
 			quickSort(arr, low, partitionedIndex - 1);
 			quickSort(arr, partitionedIndex + 1, high);
+		}
+	}
+	
+	private void quickSortTailRecursive(int[] arr, int low, int high) {
+		while (true) {
+			if (low < high) {
+				int partitionedIndex = partition(arr, low, high);
+				quickSort(arr, low, partitionedIndex - 1);
+				partitionedIndex = partitionedIndex + 1;
+			}
 		}
 	}
 	
