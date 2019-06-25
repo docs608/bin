@@ -165,6 +165,7 @@
 /TowerOfHanoiRecursive.class
 /UDPClient.class
 /UDPServer.class
+/VendingMachineApplication.class
 /VisitorPatternDemo.class
 /Worker$1.class
 /Worker.class
@@ -177,4 +178,3 @@
 /sss/
 /synchronizedBlock_1/
 /synchronizedMethodDemo1/
-/VendingMachineApplication.class
