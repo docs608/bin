@@ -54,7 +54,7 @@ public class Fibonacci {
 			return; 
 		int M[][] = new int[][]{{1,1},{1,0}}; 
 
-		power(F, n/2); 
+		optimizedPower(F, n/2); 
 		multiply(F, F); 
 
 		if (n%2 != 0) 
@@ -113,8 +113,8 @@ public class Fibonacci {
 				: 
 					(2 * fibFormulaMemoization(k - 1) + fibFormulaMemoization(k)) * fibFormulaMemoization(k); 
 
-				return lookupTableForFormulaMemoization[n]; 
-	} 
+		return lookupTableForFormulaMemoization[n]; 
+	}
 
 	static int fibUsingFormula(int n) { 
 		double phi = (Math.sqrt(5) + 1) / 2;
@@ -163,7 +163,7 @@ public class Fibonacci {
 		if (n == 0) {
 			return 0;
 		}
-		for (int i = 2; i < n; i++) {
+		for (int i = 1; i <= n - 2; i++) {
 			c = a + b;
 			a = b;
 			b = c;

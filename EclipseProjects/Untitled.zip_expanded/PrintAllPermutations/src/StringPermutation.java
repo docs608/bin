@@ -12,7 +12,7 @@ public class StringPermutation {
 		}
 	}
 
-	private  static void swap(StringBuffer str, int pos1, int pos2){
+	private static void swap(StringBuffer str, int pos1, int pos2){
 		char t1 = str.charAt(pos1);
 		str.setCharAt(pos1, str.charAt(pos2));
 		str.setCharAt(pos2, t1);

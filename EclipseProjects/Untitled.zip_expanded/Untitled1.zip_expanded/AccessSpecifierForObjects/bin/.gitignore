@@ -138,6 +138,7 @@
 /SMTPServer.class
 /SerializeDemo.class
 /SerializeEmployee.class
+/Settings.tar.gz
 /ShutdownHookDemo$1.class
 /ShutdownHookDemo$Message.class
 /ShutdownHookDemo.class
@@ -168,13 +169,3 @@
 /VendingMachineApplication.class
 /VisitorPatternDemo.class
 /Worker$1.class
-/Worker.class
-/annotationDemo_2/
-/customizedlogger/
-/deallock_1/
-/extendsThread/
-/myTestProject/
-/net/
-/sss/
-/synchronizedBlock_1/
-/synchronizedMethodDemo1/

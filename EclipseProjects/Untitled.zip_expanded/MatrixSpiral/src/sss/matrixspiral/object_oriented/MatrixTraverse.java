@@ -55,27 +55,22 @@ public abstract class MatrixTraverse {
     protected void turnUp() {
         traverseDirection = TraverseDirection.UP;
     }
+    
     public void decrementRow() {
         --row;
-    }
-    public boolean isUpLimitExceed() {
-        return (row < myMatrix.upLimit);
-    }
-    public void incrementLeftLimit() {
-        ++myMatrix.leftLimit;
-    }
-    public void incrementCol() {
-        ++col;
-
     }
     public void incrementRow() {
         ++row;
     }
-    public boolean isLeftLimitExceed() {
-        return (col < myMatrix.leftLimit);
-    }
     public void decrementCol() {
         --col;
+    }
+    public void incrementCol() {
+        ++col;
+    }
+    
+    public void incrementLeftLimit() {
+        ++myMatrix.leftLimit;
     }
     public void decrementDownLimit() {
         --myMatrix.downLimit;
@@ -83,14 +78,21 @@ public abstract class MatrixTraverse {
     public void decrementRightLimit() {
         --myMatrix.rightLimit;
     }
+    public void incrementUpLimit() {
+        ++myMatrix.upLimit;
+    }
+    
+    public boolean isUpLimitExceed() {
+        return (row < myMatrix.upLimit);
+    }
     public boolean isDownLimitExceed() {
         return (row > myMatrix.downLimit);
+    }
+    public boolean isLeftLimitExceed() {
+        return (col < myMatrix.leftLimit);
     }
     public boolean isRightLimitExceed() {
         return (col > myMatrix.rightLimit);
     }
-
-    public void incrementUpLimit() {
-        ++myMatrix.upLimit;
-    }
+    
 }
