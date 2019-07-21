@@ -1,3 +1,4 @@
+import java.util.Stack;
 
 public class QuickSort implements Sort {
 	
@@ -7,7 +8,8 @@ public class QuickSort implements Sort {
 		}
 //		quickSort(arr, 0, arr.length - 1);
 //		quickSortTailRecursive(arr, 0, arr.length - 1);
-		quickSortIterative(arr, 0, arr.length - 1);
+//		quickSortIterative1(arr, 0, arr.length - 1);
+		quickSortIterative2(arr, 0, arr.length - 1);  // V. V. I.
 		return arr;
 	}
 	
@@ -19,17 +21,47 @@ public class QuickSort implements Sort {
 		}
 	}
 	
+	private int partition(int[] arr, int low, int high) {
+		int pivot = arr[high];
+		int i = low - 1;
+		for (int j = low; j < high; j++) {
+			if (arr[j] < pivot) {
+				i++;
+				SortingUtility.swap(arr, i, j);
+			}
+		}
+		SortingUtility.swap(arr, i + 1, high);
+		return i + 1;
+	}
+	
 	private void quickSortTailRecursive(int[] arr, int low, int high) {
-		while (true) {
-			if (low < high) {
-				int partitionedIndex = partition(arr, low, high);
-				quickSort(arr, low, partitionedIndex - 1);
-				partitionedIndex = partitionedIndex + 1;
+		while (low < high) {
+			int partitionedIndex = partition(arr, low, high);
+			quickSort(arr, low, partitionedIndex - 1);
+			low = partitionedIndex + 1;
+		}
+	}
+	
+	private void quickSortIterative1(int[] arr, int low, int high) {
+		Stack<Integer> stack = new Stack<>();
+		stack.push(low);
+		stack.push(high);
+		while(!stack.isEmpty()) {
+			high = stack.pop();
+			low = stack.pop();
+			int partition = partition(arr, low, high);
+			if (partition - 1 > low) {
+				stack.push(low);
+				stack.push(partition - 1);
+			}
+			if (partition + 1 < high) {
+				stack.push(partition + 1);
+				stack.push(high);
 			}
 		}
 	}
 	
-	private void quickSortIterative(int arr[], int l, int h) {
+	private void quickSortIterative2(int arr[], int l, int h) {
         // create auxiliary stack 
         int stack[] = new int[h - l + 1]; 
   
@@ -63,19 +95,6 @@ public class QuickSort implements Sort {
                 stack[++top] = h; 
             } 
         }
-	}
-	
-	private int partition(int[] arr, int low, int high) {
-		int pivot = arr[high];
-		int i = low - 1;
-		for (int j = low; j < high; j++) {
-			if (arr[j] < pivot) {
-				i++;
-				SortingUtility.swap(arr, i, j);
-			}
-		}
-		SortingUtility.swap(arr, i + 1, high);
-		return i + 1;
 	}
 	
 }

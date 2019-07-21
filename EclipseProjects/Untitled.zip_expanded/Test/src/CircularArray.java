@@ -1,34 +1,46 @@
 import java.util.Iterator;
 
 public class CircularArray<T> implements Iterable<T> {
-	
-	private T[] items;
-	private int head = 0;
-	
-	@SuppressWarnings("unchecked")
+
+	T[] items;
+	int head = 0;
+
 	public CircularArray(int size) {
 		items = (T[]) new Object[size];
+	}
+
+	public int size() {
+		return items.length;
+	}
+	
+	public T get(int index) {
+		if (index < 0 || index >= items.length) {
+			throw new IndexOutOfBoundsException("Array index out of bound..");
+		}
+		return items[convert(index)];
+	}
+
+	public void set(int index, T val) {
+		items[convert(index)] = val;
 	}
 	
 	public void rotateLeft(int shift) {
 		head = convert(shift);
 	}
-	
+
 	public void rotateRight(int shift) {
 		head = convert(-1 * shift);
 	}
 	
-	public T get(int i) {
-		if (i < 0 || i >= items.length) {
-			throw new java.lang.IndexOutOfBoundsException("Index " + i + " is out of bounds");
+	private int convert(int index) {
+		index = index % items.length;
+		if (index < 0) {
+			index = index + items.length;
 		}
-		return items[convert(i)];
+		return (head + index) % items.length;
 	}
 	
-	public void set(int i, T item) {
-		items[convert(i)] = item;
-	}
-	
+	@Override
 	public Iterator<T> iterator() {
 		return new CircularArrayIterator();
 	}
@@ -36,27 +48,18 @@ public class CircularArray<T> implements Iterable<T> {
 	private class CircularArrayIterator implements Iterator<T> {
 		private int _current = -1;
 		
-		public CircularArrayIterator() { }
-		
+		public CircularArrayIterator() {}
+
 		@Override
 		public boolean hasNext() {
 			return _current < items.length - 1;
 		}
-		
+
 		@Override
 		public T next() {
 			_current++;
-			return (T) items[convert(_current)];
+			return items[convert(_current)];
 		}
-		
-	}
-	
-	private int convert(int index) {
-		index = index % items.length;
-		if (index < 0) {
-			index += items.length;
-		}
-		return (head + index) % items.length;
 	}
 	
 }

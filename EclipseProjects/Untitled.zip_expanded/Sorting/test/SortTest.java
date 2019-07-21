@@ -41,19 +41,13 @@ public class SortTest {
 	public void testSpecial() {
 //		int[] elements = {-3, 2, 2, 5, 5, 2, 8, 7, -9, 6, 5};
 //		int[] elements = { 3, 2, 2, 5, 5, 2, 8, 7,  9, 6, 5};    // Only for Radix sort.
+//		int[] elements = { 4, 3, 0, 1, 2};                       // Only for Cycle sort.
 		int[] elements = { 4, 3, 4, 1, 2};                       // Only for Cycle sort.
 		sorter.sort(elements);
+		SortingUtility.printArray(elements);
 		assertTrue(validate(elements));
 	}
 
-//	@Test
-//	public void testSort() {
-//		SortingUtility.printArray(numbers);
-//		sorter.sort(numbers);
-//		SortingUtility.printArray(numbers);
-//		assertTrue(validate(numbers));
-//	}
-//	
 	private boolean validate(int[] arr) {
 		if (arr == null || arr.length <= 1) {
 			return true;

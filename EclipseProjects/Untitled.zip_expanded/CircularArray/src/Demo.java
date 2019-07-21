@@ -1,4 +1,3 @@
-
 public class Demo {
 
 	/**
@@ -10,21 +9,28 @@ public class Demo {
 		for (int i = 0; i < size; i++) {
 			array.set(i, String.valueOf(i));
 		}
-		
+
 		for (int i = 0; i < size; i++) {
 			System.out.print(array.get(i) + " ");
 		}
 
 		System.out.println();
 		
-		array.rotate(2);
+		array.rotateLeft(22);
 		for (int i = 0; i < size; i++) {
 			System.out.print(array.get(i) + " ");
 		}
 		
 		System.out.println();
 		
-		array.rotate(2);
+		array.rotateRight(33);
+		for (int i = 0; i < size; i++) {
+			System.out.print(array.get(i) + " ");
+		}
+		
+		System.out.println();
+		
+		array.rotateLeft(4);
 		for (String s : array) {
 			System.out.print(s + " ");
 		}

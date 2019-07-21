@@ -107,6 +107,7 @@ public class MergeSortLL {
 		* Let us create a unsorted linked list to test the functions 
 		* created. The list shall be a: 2->3->20->5->10->15 
 		*/
+		li.push(1);
 		li.push(15); 
 		li.push(10); 
 		li.push(5); 
