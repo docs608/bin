@@ -11,7 +11,7 @@ public class ForkJoinDemo {
 		    }
 		 
 		    // submit the task to the pool
-		    final ForkJoinPool pool = new ForkJoinPool(4);
+		    final ForkJoinPool pool = new ForkJoinPool(3);
 		    final MyForkJoin finder = new MyForkJoin(data);
 		    System.out.println(pool.invoke(finder));
 		    pool.shutdown();

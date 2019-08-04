@@ -2,7 +2,7 @@ package sss.dpobjectpool.processes;
 
 import sss.dpobjectpool.objectpool.ObjectPool;
 
-public class TaskHavingProcess implements Runnable {  
+public class TaskHavingProcess implements Runnable {
 	private ObjectPool<Process> pool;  
 	private int threadNo;  
 	public TaskHavingProcess(ObjectPool<Process> pool, int threadNo){  

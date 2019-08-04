@@ -10,7 +10,7 @@ public class Resource2 {
 		while (!a.isLocked) {
 			try {
 				Thread.sleep(1000);
-			} catch(Exception e) {
+			} catch(InterruptedException e) {
 				System.out.println("Resource2 Interrupted");
 			}
 		}

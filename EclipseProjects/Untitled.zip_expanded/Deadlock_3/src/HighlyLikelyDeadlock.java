@@ -11,9 +11,9 @@ public class HighlyLikelyDeadlock {
 		public void run() {
 			while (true) {
 				synchronized (first) {
-//					System.out.println("inside first.");
+					System.out.println("inside first.");
 					synchronized (second) {
-//						System.out.println("inside second.");
+						System.out.println("inside second.");
 						System.out.println(Thread.currentThread().getName());
 					}
 				}

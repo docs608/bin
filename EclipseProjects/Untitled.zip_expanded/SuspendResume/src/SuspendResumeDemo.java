@@ -2,7 +2,6 @@ public class SuspendResumeDemo {
 	public static void main(String args[]) {
 		Worker worker1 = new Worker("task1-Worker1");
 		Worker worker2 = new Worker("task1-Worker2");
-		
 		Worker worker3 = new Worker("task1-Worker3");
 		
 		worker1.startTask();

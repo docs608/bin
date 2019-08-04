@@ -7,8 +7,8 @@ public class Task implements Runnable {
 	
 	@Override
 	public void run() {
-		while (ThreadSafeArrayList.i < 6) {
-			arrayList.set();
+		for (int i = 1; i <= 5; i++) {
+			arrayList.set(i);
 			try {
 				Thread.sleep(100);
 			}

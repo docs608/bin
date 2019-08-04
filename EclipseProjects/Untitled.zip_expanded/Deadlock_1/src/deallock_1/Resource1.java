@@ -11,7 +11,7 @@ public class Resource1 {
 		while (!b.isLocked) {
 			try {
 				Thread.sleep(1000);
-			} catch(Exception e) {
+			} catch(InterruptedException e) {
 				System.out.println("Resource1 Interrupted");
 			}
 		}

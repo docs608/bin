@@ -42,7 +42,7 @@ public class LinkedList {
 		Node curr = head;
 		int count = 0;
 		
-		while (count < 3 && curr != null) {
+		while (count < k && curr != null) {
 			next = curr.next;
 			curr.next = prev;
 			prev = curr;

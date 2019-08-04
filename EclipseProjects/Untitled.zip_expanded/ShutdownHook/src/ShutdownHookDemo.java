@@ -45,6 +45,7 @@ public class ShutdownHookDemo {
 			System.out.println("Program is closing...");
 
 
+//		} catch (InterruptedException e) {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

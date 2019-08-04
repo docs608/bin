@@ -1,9 +1,8 @@
 import sss.cyclicbarrier.cyclicbarrier.CyclicBarrier;
-//import java.util.concurrent.CyclicBarrier;
 
 public class CyclicBarrierDemo {
 	public static void main(String[] args) {
-		/*
+		/**
 		 * Create CountDownLatch with 3 parties, when all 3 parties
 		 * will reach common barrier point CyclicBarrrierEvent will be
 		 * triggered i.e. run() method of CyclicBarrrierEvent will be called

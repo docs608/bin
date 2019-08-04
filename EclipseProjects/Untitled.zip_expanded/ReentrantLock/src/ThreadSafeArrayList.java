@@ -17,9 +17,8 @@ public class ThreadSafeArrayList {
 //	private Lock lock = new ReentrantLock();
 	
 	private List<Integer> list = new ArrayList<Integer>();
-	static int i = 0;
 	
-	public void set() {
+	public void set(int i) {
 		try {
 			lock.lock();
 			i++;

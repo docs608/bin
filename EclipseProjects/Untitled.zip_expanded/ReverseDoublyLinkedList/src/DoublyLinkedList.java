@@ -86,13 +86,14 @@ public class DoublyLinkedList {
 		return newHead;
 	}
 	
-	private Node pushAtHead(Node newHead, Node newNode) {
-		newNode.prev = null;
-		newNode.next = newHead;
+	// Here curr is made the new HEAD
+	private Node pushAtHead(Node newHead, Node curr) {
+		curr.prev = null;
+		curr.next = newHead;
 		if (newHead != null) {
-			newHead.prev = newNode;
+			newHead.prev = curr;
 		}
-		newHead = newNode;
+		newHead = curr;
 		return newHead;
 	}
 	
