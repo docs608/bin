@@ -71,19 +71,19 @@ public class AtomicInteger{
 	}
 
 	/**
-	 * increments current value by 1. And return updated value.
-	 */
-	public synchronized int incrementAndGet(){
-		return ++currentValue;
-	}
-
-	/**
 	 * Method return current value. And adds value to the current value.
 	 */
 	public synchronized int getAndAdd(int value){
 		previousValue=currentValue;
 		currentValue+=value;
 		return previousValue;
+	}
+
+	/**
+	 * increments current value by 1. And return updated value.
+	 */
+	public synchronized int incrementAndGet(){
+		return ++currentValue;
 	}
 
 	/**

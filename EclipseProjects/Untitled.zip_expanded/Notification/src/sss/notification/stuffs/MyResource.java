@@ -33,8 +33,8 @@ public class MyResource {
             + " is going to notify all or one thread waiting on this object");
 
             go = true; //making condition true for waiting thread
-            notify(); // only one out of three waiting thread WT1, WT2,WT3 will woke up
-            //notifyAll(); // all waiting thread  WT1, WT2,WT3 will woke up
+            //notify(); // only one out of three waiting thread WT1, WT2,WT3 will woke up
+            notifyAll(); // all waiting thread  WT1, WT2,WT3 will woke up
 
             /* This sleep just tells that now notifyThread has the lock on
              * the object and any of the other waiting threads will get the lock

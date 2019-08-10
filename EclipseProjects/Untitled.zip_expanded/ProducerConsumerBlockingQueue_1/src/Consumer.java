@@ -35,7 +35,7 @@ public class Consumer extends Thread {
 				count++;
 			} catch (InterruptedException e) {
 				System.out.println("Consumer interupted: " + Thread.currentThread().getName());
-				Thread.currentThread().interrupt();
+//				Thread.currentThread().interrupt();
 				return;
 			}
 		}

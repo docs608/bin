@@ -21,7 +21,6 @@ public class ThreadSafeArrayList {
 	public void set(int i) {
 		try {
 			lock.lock();
-			i++;
 			checkReentrant();
 			list.add(i);
 			System.out.println(i + " added by " + Thread.currentThread().getName());

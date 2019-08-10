@@ -13,7 +13,7 @@ public class NotificationDemo {
 		Thread waitThread2 = new Thread(waitTask, "waitThread 2");
 		Thread waitThread3 = new Thread(waitTask, "waitThread 3");
 		
-		Thread notifyThread = new Thread(notifyTask, "notifyThread..");
+		Thread notifyThread = new Thread(notifyTask, "notifyThread 1");
 		
 		waitThread1.start();
 		waitThread2.start();

@@ -10,9 +10,9 @@ class Q {
 				System.out.println("InterruptedException caught");
 			}
 		}
-		System.out.println("Got: " + n);
+		System.out.println(Thread.currentThread().getName() + " Got: " + n);
 		isValueSet = false;
-		notify();
+		notifyAll();
 		return n;
 	}
 	synchronized void put(int n) {
@@ -25,7 +25,7 @@ class Q {
 		}
 		this.n = n;
 		isValueSet = true;
-		System.out.println("Put: " + n);
-		notify();
+		System.out.println(Thread.currentThread().getName() + " Put: " + n);
+		notifyAll();
 	}
 }

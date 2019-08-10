@@ -27,16 +27,16 @@ public class PC {
 		System.out.println("Consumer started...");
 		Thread.sleep(5000);
 		consumer.interrupt();
-		consumer.join();
+//		consumer.join();
 		System.out.println("Consumer.sum: " + consumer.sum);
 		System.out.println("Consumer.count: " + consumer.count);
 		System.out.println("Average: " + consumer.sum / consumer.count);
 		for (int i=0; i<NUM_OF_PRODUCERS; i++) {
 			producers[i].interrupt();
 		}
-		for (int i=0; i<NUM_OF_PRODUCERS; i++) {
-			producers[i].join();
-		}
+//		for (int i=0; i<NUM_OF_PRODUCERS; i++) {
+//			producers[i].join();
+//		}
 		System.out.println("Size of dataStream: " + dataStream.size());
 		dataStream.forEach(System.out::println);
 	}

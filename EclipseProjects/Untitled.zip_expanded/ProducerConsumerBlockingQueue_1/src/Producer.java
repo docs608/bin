@@ -35,7 +35,7 @@ public class Producer extends Thread {
 				sharedQueue.put(value);
 			} catch (InterruptedException e) {
 				System.out.println("Producer interupted: " + Thread.currentThread().getName());
-				Thread.currentThread().interrupt();
+//				Thread.currentThread().interrupt();
 				return;
 			}
 		}
