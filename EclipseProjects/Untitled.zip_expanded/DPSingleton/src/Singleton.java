@@ -7,7 +7,7 @@ import java.io.Serializable;
  * of this class if we don't make its access specifier public by implementing 
  * Cloneable interface. Here we have implemented Cloneable interface just to be verbose.
  */
-class Singleton implements Cloneable, Serializable{
+class Singleton implements Cloneable, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private static Singleton instance;
