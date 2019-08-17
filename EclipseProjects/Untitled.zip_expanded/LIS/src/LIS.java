@@ -22,8 +22,7 @@ public class LIS {
 	      before arr[n-1] max_ref is used this purpose. 
 	   The value of LIS of full array of size n is stored in 
 	 *max_ref which is our final result */
-	static int _lis(int arr[], int n) 
-	{ 
+	static int _lis(int arr[], int n) {
 		// base case 
 		if (n == 1) 
 			return 1; 
@@ -35,8 +34,7 @@ public class LIS {
 	           arr[n-2]. If   arr[i-1] is smaller than arr[n-1], and 
 	           max ending with arr[n-1] needs to be updated, then 
 	           update it */
-		for (int i = 1; i < n; i++) 
-		{ 
+		for (int i = 1; i < n; i++) {
 			res = _lis(arr, i); 
 			if (arr[i-1] < arr[n-1] && res + 1 > max_ending_here) 
 				max_ending_here = res + 1; 
