@@ -2,7 +2,6 @@
 /AdapterPatternDemo.class
 /Adder.class
 /AdderRemote.class
-/AnotherPackage/
 /Apple.class
 /AsynchFileLoggerDemo$1.class
 /AsynchFileLoggerDemo.class
@@ -80,10 +79,8 @@
 /MergeSort.class
 /MergeSortDemo.class
 /MergeSortTest.class
-/Meta.class
 /MethodRefDemo.class
 /MinMax.class
-/MyAnno.class
 /MyCallable.class
 /MyClass.class
 /MyClass1.class
@@ -97,7 +94,6 @@
 /MyHashMapDemo.class
 /MyLinkedBlockingQueue$MyIterator.class
 /MyLinkedBlockingQueue.class
-/MyPackage/
 /MyRecursiveAction.class
 /MyRecursiveTask.class
 /MyRunnable.class
