@@ -24,16 +24,13 @@ public class PrintAncestorsIterative {
 		
 		// Traverse the complete tree in postorder way till we find the key 
 		while(true) {
-			printStack(st, "0000000000000000000000000000000000000000000000000000000", root);
-			
 			// Traverse the left side. While traversing, push the nodes into 
 			// the stack so that their right subtrees can be traversed later 
 			while(root != null && root.data != key) {
 				st.push(root); // push current node 
 				root = root.left; // move to next node 
 			}
-			printStack(st, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", root);
-			
+
 			// If the node whose ancestors are to be printed is found, 
 			// then break the while loop. 
 			if(root != null && root.data == key) {
@@ -45,17 +42,14 @@ public class PrintAncestorsIterative {
 			// node any more. 
 			if(st.peek().right == null) {
 				root =st.pop();
-				printStack(st, "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", root);
 				
 				// If the popped node is right child of top, then remove the top 
 				// as well. Left child of the top must have processed before. 
 				while( st.empty() == false && st.peek().right == root) {
 					root = st.pop();
-					printStack(st, "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", root);
 				}
 			}
 
-			printPeek(st);
 			// if stack is not empty then simply set the root as right child 
 			// of top and start traversing right sub-tree. 
 			root = st.empty() ? null : st.peek().right; 
@@ -85,6 +79,61 @@ public class PrintAncestorsIterative {
 		printAncestors(root, 6);
 	} 
 
+//	// Iterative Function to print all ancestors of a given key 
+//	static void printAncestors(Node root,int key) {
+//		if(root == null) 
+//			return; 
+//		
+//		// Create a stack to hold ancestors 
+//		Stack<Node> st = new Stack<>(); 
+//		
+//		// Traverse the complete tree in postorder way till we find the key 
+//		while(true) {
+//			printStack(st, "0000000000000000000000000000000000000000000000000000000", root);
+//			
+//			// Traverse the left side. While traversing, push the nodes into 
+//			// the stack so that their right subtrees can be traversed later 
+//			while(root != null && root.data != key) {
+//				st.push(root); // push current node 
+//				root = root.left; // move to next node 
+//			}
+//			printStack(st, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", root);
+//			
+//			// If the node whose ancestors are to be printed is found, 
+//			// then break the while loop. 
+//			if(root != null && root.data == key) {
+//				break;
+//			}
+//			
+//			// Check if right sub-tree exists for the node at top 
+//			// If not then pop that node because we don't need this 
+//			// node any more. 
+//			if(st.peek().right == null) {
+//				root =st.pop();
+//				printStack(st, "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", root);
+//				
+//				// If the popped node is right child of top, then remove the top 
+//				// as well. Left child of the top must have processed before. 
+//				while( st.empty() == false && st.peek().right == root) {
+//					root = st.pop();
+//					printStack(st, "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", root);
+//				}
+//			}
+//
+//			printPeek(st);
+//			// if stack is not empty then simply set the root as right child 
+//			// of top and start traversing right sub-tree. 
+//			root = st.empty() ? null : st.peek().right; 
+//		} 
+//		
+//		// If stack is not empty, print contents of stack 
+//		// Here assumption is that the key is there in tree 
+//		while( !st.empty() ) {
+//			System.out.print(st.peek().data+" "); 
+//			st.pop(); 
+//		} 
+//	}
+//	
 	static void printStack(Stack<Node> s, String delimiter, Node root) {
 		System.out.println(delimiter);
 		if (root != null) {

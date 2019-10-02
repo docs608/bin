@@ -4,6 +4,8 @@ public class BSTDemo {
 	public static void main(String args[]) {
 	      Integer[] a = {1, 5, 2, 4, 7, 6, 9};
 	      BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+//	      MyComp myComp = new MyComp();
+//	      BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>(myComp);
 	      for(Integer n : a)
 	    	  bst.insert(n);
 

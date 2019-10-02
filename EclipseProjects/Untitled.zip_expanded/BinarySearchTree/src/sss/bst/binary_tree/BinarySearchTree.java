@@ -28,11 +28,12 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	}
 
 	// compares the data of two nodes.
+	// PUT -ve BETWEEN t1 and t2
 	private int compare(T t1, T t2) {
 		if (comparator == null)
-			return t1.compareTo(t2);
+			return t1.compareTo(t2);   // (t1 - t2 == +ve) return 1;
 		else
-			return comparator.compare(t1, t2);
+			return comparator.compare(t1, t2);   // (t1 - t2 == +ve) return 1;
 	}
 	
 	/**
@@ -139,7 +140,9 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	public	int height() {
+	// CAN VERIFY DEFINITION OF HEIGHT FROM HERE AS WELL:
+	// https://www.youtube.com/watch?v=_SiwrPXG9-g
+	public int height() {
 		int height = height(root);
 		return (height < 0) ? 0 : height;
 	}
@@ -176,7 +179,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	public	int diameter() {
+	public int diameter() {
 		return diameter(root);
 	}
 	
@@ -366,7 +369,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	}
 	
 	// Generic node class of the Binary tree.
-	static class Node<T> {
+	private static class Node<T> {
 		T data;
 		Node<T> left;
 		Node<T> right;
