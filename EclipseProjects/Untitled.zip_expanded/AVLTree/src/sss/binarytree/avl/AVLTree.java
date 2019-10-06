@@ -17,7 +17,7 @@ import java.util.Stack;
 public class AVLTree<T extends Comparable<T>> implements BinaryTree<T>,
                                 Iterable<T>{
 	
-	private Node<T> balancingOperations(Node<T> node, T value) {
+	private Node<T> balancingOperations(Node<T> node) {
     	
         /* 2. Update height of this ancestor node */
         node.height = Math.max(height(node.left), height(node.right)) + 1;
@@ -57,7 +57,7 @@ public class AVLTree<T extends Comparable<T>> implements BinaryTree<T>,
         return node;
     }
     
-	private int height(Node<?> N) {
+	private int height(Node<T> N) {
 		if (N == null)
 			return 0;
 		return N.height;
@@ -161,7 +161,7 @@ public class AVLTree<T extends Comparable<T>> implements BinaryTree<T>,
         else
             node.right = insert(node.right, value);
 
-        node = balancingOperations(node, value);
+        node = balancingOperations(node);
 
         /* return the (unchanged) node pointer */
         return node;
@@ -199,7 +199,7 @@ public class AVLTree<T extends Comparable<T>> implements BinaryTree<T>,
 		// If the tree had only one node then return 
 		if (node == null) 
 			return null;
-		node = balancingOperations(node, toDelete);
+		node = balancingOperations(node);
 		
 		return node; 
 	} 
@@ -438,7 +438,6 @@ public class AVLTree<T extends Comparable<T>> implements BinaryTree<T>,
 		int height = 1;
 		Node<T> left;
 		Node<T> right;
-		Node<T> parent;
 		
 		public Node(T data) {
 			this.data = data;

@@ -9,38 +9,24 @@ class BSTPreOrder {
 		// Create an empty stack 
 		Stack<Integer> s = new Stack<Integer>(); 
 
-		// Initialize current root as minimum possible 
-		// value 
+		// Initialize current root as minimum possible value 
 		int root = Integer.MIN_VALUE; 
 
 		// Traverse given array 
 		for (int i = 0; i < n; i++) {
-			System.out.println("i : " + i);
-			System.out.println("pre[i] : " + pre[i]);
-			System.out.println("root : " + root);
-			printStack(s, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-			// If we find a node who is on right side 
-			// and smaller than root, return false 
+			// If we find a node who is on right side and smaller than root, return false
 			if (pre[i] < root) { 
 				return false; 
 			} 
 
 			// If pre[i] is in right subtree of stack top, Keep removing items 
 			// smaller than pre[i] and make the last removed item as new root.
-			if (!s.empty()) {
-				System.out.println("s.peek() : " + s.peek());
-			}
 			while (!s.empty() && s.peek() < pre[i]) {
-				System.out.println("Inside while...");
 				root = s.pop();
-				System.out.println("root : " + root);
-				printStack(s, "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 			} 
 
-			// At this point either stack is empty or 
-			// pre[i] is smaller than root, push pre[i] 
+			// At this point either stack is empty or pre[i] is smaller than root, push pre[i] 
 			s.push(pre[i]); 
-			printStack(s, "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
 		} 
 		return true; 
 	} 
@@ -67,6 +53,46 @@ class BSTPreOrder {
 		} 
 	}
 	
+//	boolean canRepresentBST(int pre[], int n) { 
+//		// Create an empty stack 
+//		Stack<Integer> s = new Stack<Integer>(); 
+//
+//		// Initialize current root as minimum possible 
+//		// value 
+//		int root = Integer.MIN_VALUE; 
+//
+//		// Traverse given array 
+//		for (int i = 0; i < n; i++) {
+//			System.out.println("i : " + i);
+//			System.out.println("pre[i] : " + pre[i]);
+//			System.out.println("root : " + root);
+//			printStack(s, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//			// If we find a node who is on right side 
+//			// and smaller than root, return false 
+//			if (pre[i] < root) { 
+//				return false; 
+//			} 
+//
+//			// If pre[i] is in right subtree of stack top, Keep removing items 
+//			// smaller than pre[i] and make the last removed item as new root.
+//			if (!s.empty()) {
+//				System.out.println("s.peek() : " + s.peek());
+//			}
+//			while (!s.empty() && s.peek() < pre[i]) {
+//				System.out.println("Inside while...");
+//				root = s.pop();
+//				System.out.println("root : " + root);
+//				printStack(s, "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+//			} 
+//
+//			// At this point either stack is empty or 
+//			// pre[i] is smaller than root, push pre[i] 
+//			s.push(pre[i]); 
+//			printStack(s, "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
+//		} 
+//		return true; 
+//	} 
+//
 	static void printStack(Stack<Integer> s, String delimiter) {
 		System.out.println(delimiter);
 		Stack<Integer> scopy1 = new Stack<>(); 

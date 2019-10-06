@@ -11,7 +11,8 @@ public class PrintAllCombinations {
 	}
 	
 	public static void main(String[] args) {
-		combine("abc", new StringBuffer(), 0);
+		StringBuffer outstr = new StringBuffer();
+		combine("abc", outstr, 0);
 	}
 
 }

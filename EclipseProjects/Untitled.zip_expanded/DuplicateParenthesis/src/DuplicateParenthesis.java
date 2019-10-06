@@ -13,39 +13,26 @@ public class DuplicateParenthesis {
 		// Iterate through the given expression 
 		char[] str = s.toCharArray(); 
 		for (char ch : str) {
-			System.out.println("---------------------------------------------------------------------");
 			// if current character is close parenthesis ')' 
-			if (ch == ')') { 
+			if (ch != ')') {
+				Stack.push(ch);
+			} else {
 				// pop character from the stack 
 				char top = Stack.pop();
-				System.out.println("top : " + top);
-				printStack(Stack, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 				// stores the number of characters between a 
 				// closing and opening parenthesis 
 				// if this count is less than or equal to 1 
 				// then the brackets are redundant else not 
 				int elementsInside = 0;
-				System.out.println("top above while : " + top);
 				while (top != '(') { 
-					System.out.println("top inside while : " + top);
 					elementsInside++;
 					top = Stack.pop();
-					System.out.println("top : " + top);
-					System.out.println("elementsInside : " + elementsInside);
-					printStack(Stack, "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 				}
-				System.out.println("not entered in while loop");
 				if (elementsInside < 1) { 
 					return true; 
 				} 
-			} // push open parenthesis '(', operators and 
-			// operands to stack 
-			else { 
-				Stack.push(ch);
-				printStack(Stack, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 			}
-			System.out.println("=========================================================================");
 		} 
 
 		// No duplicates found 
@@ -66,6 +53,54 @@ public class DuplicateParenthesis {
 
 	}
 	
+//	// Function to find duplicate parenthesis in a 
+//	// balanced expression 
+//	static boolean findDuplicateparenthesis(String s) { 
+//		// create a stack of characters 
+//		Stack<Character> Stack = new Stack<>(); 
+//
+//		// Iterate through the given expression 
+//		char[] str = s.toCharArray(); 
+//		for (char ch : str) {
+//			System.out.println("---------------------------------------------------------------------");
+//			// if current character is close parenthesis ')' 
+//			if (ch == ')') { 
+//				// pop character from the stack 
+//				char top = Stack.pop();
+//				System.out.println("top : " + top);
+//				printStack(Stack, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//
+//				// stores the number of characters between a 
+//				// closing and opening parenthesis 
+//				// if this count is less than or equal to 1 
+//				// then the brackets are redundant else not 
+//				int elementsInside = 0;
+//				System.out.println("top above while : " + top);
+//				while (top != '(') { 
+//					System.out.println("top inside while : " + top);
+//					elementsInside++;
+//					top = Stack.pop();
+//					System.out.println("top : " + top);
+//					System.out.println("elementsInside : " + elementsInside);
+//					printStack(Stack, "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+//				}
+//				System.out.println("not entered in while loop");
+//				if (elementsInside < 1) { 
+//					return true; 
+//				} 
+//			} // push open parenthesis '(', operators and 
+//			// operands to stack 
+//			else { 
+//				Stack.push(ch);
+//				printStack(Stack, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+//			}
+//			System.out.println("=========================================================================");
+//		} 
+//
+//		// No duplicates found 
+//		return false; 
+//	} 
+//
 	static void printStack(Stack<Character> s, String delimiter) {
 		System.out.println(delimiter);
 		Stack<Character> scopy1 = new Stack<>(); 
