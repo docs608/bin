@@ -74,10 +74,10 @@ public class GFG {
 		msh[i] --> Maximum possible Stack Height 
 				with box i on top */
 		int[] msh = new int[count]; 
-		int[] res = new int[count]; 
+//		int[] res = new int[count]; 
 		for (int i = 0; i < count; i++ ) {
 			msh[i] = rot[i].h;
-			res[i] = i;
+//			res[i] = i;
 		}
 		
 		for(int i = 1; i < count; i++){

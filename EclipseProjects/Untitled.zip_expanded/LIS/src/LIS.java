@@ -52,16 +52,15 @@ public class LIS {
 	public int[] lis(int[] arr) {
 		int n = arr.length;
 		int lis[] = new int[n];
-		int i, j;
 
 		/* Initialize LIS values for all indexes */
-		for ( i = 0; i < n; i++ ) {
+		for (int i = 0; i < n; i++ ) {
 			lis[i] = 1;
 		}
 
 		/* Compute optimized LIS values in bottom up manner */
-		for ( i = 1; i < n; i++ ) {
-			for ( j = 0; j < i; j++ ) {
+		for (int i = 1; i < n; i++ ) {
+			for (int j = 0; j < i; j++ ) {
 				if ( arr[i] > arr[j] && lis[i] < lis[j] + 1) {
 					lis[i] = lis[j] + 1;
 				}
@@ -71,7 +70,7 @@ public class LIS {
 		/* Pick maximum of all LIS values */
 		int result = -1;
 		int index = -1;
-		for ( i = 0; i < n; i++ ) {
+		for (int i = 0; i < n; i++ ) {
 			if ( result < lis[i] ) {
 				result = lis[i];
 				index = i;
@@ -90,6 +89,22 @@ public class LIS {
 	}
 
 	int[] lisUtil(int[] arr, int[] lis, int index) {
+//		System.out.println("index: " + index);
+//		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//		for (int i = 0; i < arr.length; i++) {
+//			System.out.print(arr[i] + ", ");
+//		}
+//		System.out.println();
+//		System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+//		System.out.println();
+//		System.out.println("ccccccccccccccccccccccccccccccccccccccccccccccccccccc");
+//		for (int i = 0; i < lis.length; i++) {
+//			System.out.print(lis[i] + ", ");
+//		}
+//		System.out.println();
+//		System.out.println("ddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+//		System.out.println();
+		
 		int result = lis[index];
 		// Start moving backwards from the end and print the result
 		int[] lisResult = new int[result];

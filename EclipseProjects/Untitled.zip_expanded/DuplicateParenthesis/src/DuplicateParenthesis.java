@@ -17,19 +17,13 @@ public class DuplicateParenthesis {
 			if (ch != ')') {
 				Stack.push(ch);
 			} else {
-				// pop character from the stack 
-				char top = Stack.pop();
-
-				// stores the number of characters between a 
-				// closing and opening parenthesis 
-				// if this count is less than or equal to 1 
-				// then the brackets are redundant else not 
 				int elementsInside = 0;
+				char top = Stack.pop();
 				while (top != '(') { 
 					elementsInside++;
 					top = Stack.pop();
 				}
-				if (elementsInside < 1) { 
+				if (elementsInside == 0) { 
 					return true; 
 				} 
 			}

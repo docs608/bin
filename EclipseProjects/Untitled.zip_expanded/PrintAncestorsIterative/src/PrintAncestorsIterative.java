@@ -16,7 +16,8 @@ public class PrintAncestorsIterative {
 	
 	// Iterative Function to print all ancestors of a given key 
 	static void printAncestors(Node root,int key) {
-		if(root == null) 
+		Node curr = root;
+		if(curr == null) 
 			return; 
 		
 		// Create a stack to hold ancestors 
@@ -26,14 +27,14 @@ public class PrintAncestorsIterative {
 		while(true) {
 			// Traverse the left side. While traversing, push the nodes into 
 			// the stack so that their right subtrees can be traversed later 
-			while(root != null && root.data != key) {
-				st.push(root); // push current node 
-				root = root.left; // move to next node 
+			while(curr != null && curr.data != key) {
+				st.push(curr); // push current node 
+				curr = curr.left; // move to next node 
 			}
 
 			// If the node whose ancestors are to be printed is found, 
 			// then break the while loop. 
-			if(root != null && root.data == key) {
+			if(curr != null && curr.data == key) {
 				break;
 			}
 			
@@ -41,18 +42,18 @@ public class PrintAncestorsIterative {
 			// If not then pop that node because we don't need this 
 			// node any more. 
 			if(st.peek().right == null) {
-				root =st.pop();
+				curr =st.pop();
 				
 				// If the popped node is right child of top, then remove the top 
 				// as well. Left child of the top must have processed before. 
-				while( st.empty() == false && st.peek().right == root) {
-					root = st.pop();
+				while( st.empty() == false && st.peek().right == curr) {
+					curr = st.pop();
 				}
 			}
 
-			// if stack is not empty then simply set the root as right child 
+			// if stack is not empty then simply set the curr as right child 
 			// of top and start traversing right sub-tree. 
-			root = st.empty() ? null : st.peek().right; 
+			curr = st.empty() ? null : st.peek().right; 
 		} 
 		
 		// If stack is not empty, print contents of stack 

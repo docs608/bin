@@ -46,12 +46,11 @@ public class BinaryTree<T> {
      * 3) If current is NULL and stack is empty then we are done.
      */
     void iterativeInorder() { 
-    	Node<T> rootNode = root;
-        if (rootNode == null) 
+    	Node<T> curr = root;
+        if (curr == null) 
             return; 
   
         Stack<Node<T>> s = new Stack<>(); 
-        Node<T> curr = rootNode;
   
         while (curr != null || !s.isEmpty()) { 
             while (curr !=  null) {

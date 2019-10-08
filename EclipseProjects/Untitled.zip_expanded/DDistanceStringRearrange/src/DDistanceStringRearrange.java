@@ -15,7 +15,7 @@ public class DDistanceStringRearrange {
 
 	// The main function that rearranges input string 'str' such that 
 	// two same characters become d distance away 
-	boolean rearrange(char str[], int d) {
+	boolean rearrange(char[] str, int d) {
 		// Find length of input string 
 		int n = str.length;
 

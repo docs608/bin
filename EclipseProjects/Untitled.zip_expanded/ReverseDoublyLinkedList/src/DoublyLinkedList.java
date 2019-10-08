@@ -74,7 +74,7 @@ public class DoublyLinkedList {
 		
 		while (count < k && curr != null) {
 			next = curr.next;
-			newHead = pushAtHead(newHead, curr);  // pointers change of singlyLinkedList group reversal in included here.
+			newHead = pushCurrAtHead(newHead, curr);  // pointers change of singlyLinkedList group reversal in included here.
 			curr = next;
 			count++;
 		}
@@ -87,7 +87,7 @@ public class DoublyLinkedList {
 	}
 	
 	// Here curr is made the new HEAD
-	private Node pushAtHead(Node newHead, Node curr) {
+	private Node pushCurrAtHead(Node newHead, Node curr) {
 		curr.prev = null;
 		curr.next = newHead;
 		if (newHead != null) {
