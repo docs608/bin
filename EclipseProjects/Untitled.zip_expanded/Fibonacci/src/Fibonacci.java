@@ -141,7 +141,7 @@ public class Fibonacci {
 		int i; 
 		int M[][] = new int[][]{{1,1},{1,0}}; 
 
-		// n - 1 times multiply the matrix to {{1,0},{0,1}} 
+		// n - 2 times multiply the matrix to {{1,0},{0,1}} 
 		for (i = 2; i <= n; i++) 
 			multiply(F, M); 
 	} 

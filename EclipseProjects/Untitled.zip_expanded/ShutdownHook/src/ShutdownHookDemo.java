@@ -19,13 +19,14 @@ public class ShutdownHookDemo {
 		 * setDefaultUncaughtExceptionHandler method sets the default handler
 		 * which is called when a thread terminates due to an
 		 * uncaught unchecked(runtime) exception generated in run() method.
-		 *          
 		 */
 		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
 			public void uncaughtException(Thread thread, Throwable throwable) {
 				System.out.println(thread.getName() + " has thrown " + throwable);
 			}
 		});
+		
+//		int j = 100 / 0;
 		
 		try {
 

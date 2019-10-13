@@ -10,29 +10,29 @@ import java.util.logging.SimpleFormatter;
 
 public class CustomizedLogger {
 	private final Logger LOGGER;
-//	private Handler fileHandler;
-//	private Formatter simpleFormatter;
+	private Handler fileHandler;
+	private Formatter simpleFormatter;
 
 	private CustomizedLogger(String className) {
 		LOGGER = Logger.getLogger(className);
-//		doOtherCustomization();
+		doOtherCustomization();
 	}
 
-//	private void doOtherCustomization() {
-//		try {
-//			fileHandler  = new FileHandler("./Error.log");
-//			simpleFormatter = new SimpleFormatter();
-//			fileHandler.setFormatter(simpleFormatter);
-//			LOGGER.addHandler(fileHandler);
-//			fileHandler.setLevel(Level.ALL);
-//			LOGGER.setLevel(Level.ALL);
-//
-//			// To disable the console handler.
-//			LOGGER.setUseParentHandlers(false);
-//		} catch (SecurityException | IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	private void doOtherCustomization() {
+		try {
+			fileHandler  = new FileHandler("./Error.log");
+			simpleFormatter = new SimpleFormatter();
+			fileHandler.setFormatter(simpleFormatter);
+			LOGGER.addHandler(fileHandler);
+			fileHandler.setLevel(Level.ALL);
+			LOGGER.setLevel(Level.ALL);
+
+			// To disable the console handler.
+			LOGGER.setUseParentHandlers(false);
+		} catch (SecurityException | IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static Logger getCustomizedLogger(String className) {
 		CustomizedLogger customizedLogger = new CustomizedLogger(className);

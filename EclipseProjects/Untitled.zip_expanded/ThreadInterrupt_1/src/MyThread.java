@@ -3,11 +3,13 @@ class MyThread extends Thread {
 	public void run() {
 		try { 
 			for (int i = 0; i < 5; i++) { 
-				System.out.println("Child Thread executing"); 
+				System.out.println("Child Thread executing");
+				System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 				// Here current threads goes to sleeping state 
 				// Another thread gets the chance to execute 
 				Thread.sleep(20000);
+				System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 				System.out.println("Child Thread awake from sleep");
 			} 
 		} 

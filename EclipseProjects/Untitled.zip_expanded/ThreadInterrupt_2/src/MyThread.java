@@ -10,8 +10,10 @@ class MyThread extends Thread {
 		}
 		
 		try {
-			System.out.println("Child Thread executing"); 
+			System.out.println("Child Thread executing");
+			System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbb");
 			Thread.sleep(20000);
+			System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbb");
 			System.out.println("Child Thread awake from sleep");
 		} 
 		catch (InterruptedException e) { 

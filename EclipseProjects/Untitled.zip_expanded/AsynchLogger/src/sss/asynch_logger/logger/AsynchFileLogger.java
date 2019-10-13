@@ -26,6 +26,7 @@ public class AsynchFileLogger extends Thread implements Logger {
 	private boolean stopLogger = false;
 
 	synchronized public static AsynchFileLogger getLogger(
+			// V V I - Class<?> className
 			Class<?> className, String fileName) {
 
 		if (LoggerMap.containsKey(fileName))

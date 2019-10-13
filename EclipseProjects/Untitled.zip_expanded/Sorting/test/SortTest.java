@@ -10,7 +10,7 @@ public class SortTest {
 	private int[] numbers;
 	private final static int SIZE = 7;
 	private final static int MAX = 20;
-	Sort sorter = new QuickSort();
+	Sort sorter = new RadixSort();
 	
 	@Before
 	public void setUp() throws Exception {

@@ -27,9 +27,9 @@ public class Worker extends Thread {
 					throw new RuntimeException("InterruptedException in the suspended"
 							+ " state of the Task. The stack traces is: " + e);
 				}
-				System.out.println(Thread.currentThread() + " resumed..");
-				System.out.println(Thread.currentThread() + " doing heavy task..");
 			}
+			System.out.println(Thread.currentThread() + " resumed..");
+			System.out.println(Thread.currentThread() + " doing heavy task..");
 		}
 		System.out.println(Thread.currentThread() + " terminated..");
 	}
