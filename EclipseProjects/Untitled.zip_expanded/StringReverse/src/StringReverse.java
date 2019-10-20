@@ -1,6 +1,5 @@
 class StringReverse {
 	public String reverse(String str) {
-		System.out.println(str);
 		if ((str==null)||(str.length() <= 1) )
 			return str;
 		return reverse(str.substring(1)) + str.charAt(0);

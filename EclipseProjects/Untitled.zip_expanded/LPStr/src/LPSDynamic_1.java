@@ -76,8 +76,9 @@ public class LPSDynamic_1 {
 	
 	// Driver program to test above functions
 	public static void main(String[] args) {
-		String testStr = "ab";
+//		String testStr = "ab";
 //		String testStr = "forgeeksskeegfor";
+		String testStr = "dalad";
 		char[] str = testStr.toCharArray();
 		System.out.println("Length of LongestPalindromicSubstring: " + 
 		longestPalSubstr(str));

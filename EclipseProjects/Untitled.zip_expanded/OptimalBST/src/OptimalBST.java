@@ -9,14 +9,14 @@ public class OptimalBST {
         }
         
         for(int l = 2; l <= freq.length; l++) {
-            for(int i = 0; i <= freq.length-l; i++) {
+            for(int i = 0; i <= freq.length-l + 1; i++) {
                 int j = i + l -1;
                 T[i][j] = Integer.MAX_VALUE;
                 int sum = sum(freq, i, j);
                 
                 for(int k = i; k <= j; k++){
                      int val = sum + (k-1 < i ? 0 : T[i][k-1]) +
-                            (k+1 > j ? 0 : T[k+1][j]) ;
+                            (k+1 > j ? 0 : T[k+1][j]);
                      if(val < T[i][j]){
                          T[i][j] = val;
                      }

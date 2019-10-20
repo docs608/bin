@@ -97,9 +97,9 @@ public class CoinChange {
         CoinChange cc = new CoinChange();
         int total = 15;
         int coins[] = {3,4,6,7,9};
-//        System.out.println(cc.numberOfSolutions(total, coins));
-        System.out.println(cc.numberOfSolutionsOnSpace(total, coins));
-//        cc.printCoinChangingSolution(total, coins);
+        System.out.println(cc.numberOfSolutions(total, coins));
+//        System.out.println(cc.numberOfSolutionsOnSpace(total, coins));
+        cc.printCoinChangingSolution(total, coins);
     }
     
 	static void printMatrix(int[][] matrix, int m, int n, String delimiter) {
