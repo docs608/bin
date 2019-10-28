@@ -2,7 +2,7 @@
 public class TOH {
 
 	public static void main(String[] args) {
-		int nDisks = 3;
+		int nDisks = 15;
 		doTowersRecursive(nDisks, 'A', 'B', 'C');
 	}
 

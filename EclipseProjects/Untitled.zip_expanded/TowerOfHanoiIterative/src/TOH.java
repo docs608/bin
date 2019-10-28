@@ -108,7 +108,7 @@ public class TOH {
 	public static void main(String[] args) {
 		
 		// Input: number of disks 
-		int num_of_disks = 3; 
+		int num_of_disks = 15; 
 		
 		TOH ob = new TOH(); 
 		Stack src, dest, aux; 
