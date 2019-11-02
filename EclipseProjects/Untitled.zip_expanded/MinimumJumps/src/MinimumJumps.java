@@ -1,28 +1,6 @@
 // Java program to find Minimum number of jumps to reach end 
 public class MinimumJumps {
 
-	static int minJumpsRecursive(int arr[], int l, int h) {
-		// Base case: when source and destination are same 
-		if (h == l) 
-			return 0; 
-
-		// When nothing is reachable 
-		// from the given source 
-		if (arr[l] == 0) 
-			return Integer.MAX_VALUE; 
-
-		// Traverse through all the points reachable from arr[l]. Recursively 
-		// get the minimum number of jumps needed to reach arr[h] from these reachable points.
-		int min = Integer.MAX_VALUE; 
-		for (int i = l+1; i <= h && i <= l + arr[l]; i++) {
-			int jumps = minJumpsRecursive(arr, i, h); 
-			if(jumps != Integer.MAX_VALUE && jumps + 1 < min) 
-				min = jumps + 1; 
-		} 
-		return min; 
-
-	}
-
 	// Returns Minimum number of jumps to reach end 
 	static int minJumps(int arr[], int n) {
 
@@ -54,7 +32,7 @@ public class MinimumJumps {
 				min = Integer.MAX_VALUE; 
 
 				// following loop checks with all reachable points and takes the minimum 
-				for (int j = i + 1; j < n && j <= arr[i] + i; j++) {
+				for (int j = i + 1; j < n && j <= i + arr[i]; j++) {
 					if (min > jumps[j]) 
 						min = jumps[j]; 
 				} 
@@ -77,4 +55,27 @@ public class MinimumJumps {
 		System.out.println("Minimum number of jumps to reach end is " + minJumpsRecursive(arr, 0, size));
 		System.out.println("Minimum number of jumps to reach end is " + minJumps(arr, size));
 	} 
+	
+	static int minJumpsRecursive(int arr[], int l, int h) {
+		// Base case: when source and destination are same 
+		if (h == l) 
+			return 0; 
+
+		// When nothing is reachable 
+		// from the given source 
+		if (arr[l] == 0) 
+			return Integer.MAX_VALUE; 
+
+		// Traverse through all the points reachable from arr[l]. Recursively 
+		// get the minimum number of jumps needed to reach arr[h] from these reachable points.
+		int min = Integer.MAX_VALUE; 
+		for (int i = l+1; i <= h && i <= l + arr[l]; i++) {
+			int jumps = minJumpsRecursive(arr, i, h); 
+			if(jumps != Integer.MAX_VALUE && jumps + 1 < min) 
+				min = jumps + 1; 
+		} 
+		return min; 
+
+	}
+
 } 
