@@ -18,6 +18,7 @@ public class Fibonacci {
 		// for above technique,
 		// Time complexity : T(n) = T(n-1) + T(n-2) which is exponential,
 		// Space complexity : O(n) if we consider the function call stack size, otherwise O(1),
+		// For more clarification: https://stackoverflow.com/questions/28756045/what-is-the-space-complexity-of-a-recursive-fibonacci-algorithm
 		
 		System.out.println(fibTailRecursive(n, 0, 1));
 		// for above technique,
@@ -31,13 +32,13 @@ public class Fibonacci {
 		
 		System.out.println(fibUsingFormula(n));  // Time complexity : O(1), Space complexity : O(1)
 
-		_initialize(lookupTableForFormulaMemoization, NIL);
-		System.out.println(fibFormulaMemoization(10));  // Time complexity : O(n), Space complexity : O(n)
-
 		System.out.println(fibMatrixMultiplication(n));  // Time complexity : O(n), Space complexity : O(1)
 		
 		System.out.println(fibOptimizedMatrixMultiplication(n));  // Time complexity : O(log n), Space complexity : O(1)
 		
+		_initialize(lookupTableForFormulaMemoization, NIL);
+		System.out.println(fibFormulaMemoization(10));  // Time complexity : O(n), Space complexity : O(n)
+
 	}
 
 	static int fib(int n) {
@@ -138,11 +139,12 @@ public class Fibonacci {
 	}
 
 	static void power(int F[][], int n) {
-		int i; 
+		if( n == 0 || n == 1) 
+			return;
 		int M[][] = new int[][]{{1,1},{1,0}}; 
 
 		// n - 2 times multiply the matrix to {{1,0},{0,1}} 
-		for (i = 2; i <= n; i++) 
+		for (int i = 2; i <= n; i++) 
 			multiply(F, M); 
 	} 
 
