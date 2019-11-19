@@ -7,9 +7,7 @@ public class ThreadInterruptDemo {
 		MyThread thread = new MyThread();
 		thread.start();
 
-		// main thread calls interrupt() method on child thread
 		// TO SEE ITS IMPACT, COMMENT THE BELOW LINE
-//		thread.interrupt();
 		Thread.currentThread().interrupt();
 		System.out.println("After calling currentThread.interrupt");
 		

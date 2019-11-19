@@ -8,27 +8,27 @@ public class BucketSort {
 		int n = arr.length;
 		
 		// 1) Create n empty buckets
-		List<Double>[] bucket = new ArrayList[n];
+		List<Double>[] buckets = new ArrayList[n];
 		for (int i = 0; i < n; i++) {
-			bucket[i] = new ArrayList<>();
+			buckets[i] = new ArrayList<>();
 		}
 		
 		// 2) Put array elements in different buckets 
 		for (int i=0; i<n; i++) {
 			int bucketIndex = (int) (n * arr[i]); // Index in bucket 
-			bucket[bucketIndex].add(arr[i]);
+			buckets[bucketIndex].add(arr[i]);
 		}
 
 		// 3) Sort individual buckets 
 		for (int i=0; i<n; i++) {
-			Collections.sort(bucket[i]);
+			Collections.sort(buckets[i]);
 		}
 
 		// 4) Concatenate all buckets into arr[] 
 		int index = 0; 
 		for (int i = 0; i < n; i++) 
-			for (int j = 0; j < bucket[i].size(); j++) 
-			arr[index++] = bucket[i].get(j);
+			for (int j = 0; j < buckets[i].size(); j++) 
+			arr[index++] = buckets[i].get(j);
 	}
 
 	public static void main(String[] args) {

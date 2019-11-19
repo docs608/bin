@@ -9,7 +9,7 @@ import sss.dpobjectpool.processes.MyObject;
 import sss.dpobjectpool.processes.PoolsObjectUserTask;  
 
 public class ObjectPoolDemo{  
-	private ObjectPool<MyObject> pool;  
+	private ObjectPool<MyObject> pool;
 	private AtomicLong objectNo=new AtomicLong(0);
 	public void setUp() {
 		// Create a pool of objects of type Process.  
@@ -41,6 +41,9 @@ public class ObjectPoolDemo{
 		pool.shutdown();  
 	}
 	public void testObjectPool() {
+//		for (int i = 0; i < 40; i++) {
+//			new Thread(new PoolsObjectUserTask(pool, i)).start();
+//		}
 		// You can change the parameter of Executors.newFixedThreadPool() method
 		// to see the different effect. From this place we can control the
 		// number of threads created at a time.

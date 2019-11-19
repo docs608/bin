@@ -19,13 +19,14 @@ class Q {
 			System.out.println("InterruptedException caught"); 
 		} 
 		
+		int temp = n;
 		// consumer consuming an item 
-		System.out.println(Thread.currentThread().getName() + " Got: " + n);
+		System.out.println(Thread.currentThread().getName() + " Got: " + temp);
 		
 		// After consumer consumes the item, 
 		// it releases semProd to notify producer 
 		semProd.release(); 
-		return n;
+		return temp;
 	} 
 	
 	// to put an item in buffer 

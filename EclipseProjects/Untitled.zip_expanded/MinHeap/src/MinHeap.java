@@ -39,21 +39,30 @@ public class MinHeap {
         list.set(i, temp);
     }
 
-    public void insert(int item) {
-        list.add(item);
-        int i = list.size() - 1;
-        int parent = parent(i);
-
-        while (parent != i && list.get(i) < list.get(parent)) {
-            swap(i, parent);
-            i = parent;
-            parent = parent(i);
-        }
-    }
-
     public void buildHeap() {
         for (int i = list.size() / 2; i >= 0; i--) {
             minHeapify(i);
+        }
+    }
+
+    private void minHeapify(int i) {
+        int left = left(i);
+        int right = right(i);
+        int smallest = i;
+
+        // find the smallest key between current node and its children.
+        if (left < list.size() && list.get(left) < list.get(smallest)) {
+        	smallest = left;
+        }
+
+        if (right < list.size() && list.get(right) < list.get(smallest)) {
+        	smallest = right;
+        }
+
+        // if the smallest key is not the current key then bubble-down it.
+        if (smallest != i) {
+            swap(i, smallest);
+            minHeapify(smallest);
         }
     }
 
@@ -77,6 +86,18 @@ public class MinHeap {
         return min;
     }
 
+    public void insert(int item) {
+        list.add(item);
+        int i = list.size() - 1;
+        int parent = parent(i);
+
+        while (parent != i && list.get(i) < list.get(parent)) {
+            swap(i, parent);
+            i = parent;
+            parent = parent(i);
+        }
+    }
+
     public void decreaseKey(int i, int key) {
         if (list.get(i) < key) {
             throw new IllegalArgumentException("Key is larger than the original key");
@@ -90,27 +111,6 @@ public class MinHeap {
             swap(i, parent);
             i = parent;
             parent = parent(parent);
-        }
-    }
-
-    private void minHeapify(int i) {
-        int left = left(i);
-        int right = right(i);
-        int smallest = i;
-
-        // find the smallest key between current node and its children.
-        if (left <= list.size() - 1 && list.get(left) < list.get(smallest)) {
-        	smallest = left;
-        }
-
-        if (right <= list.size() - 1 && list.get(right) < list.get(smallest)) {
-        	smallest = right;
-        }
-
-        // if the smallest key is not the current key then bubble-down it.
-        if (smallest != i) {
-            swap(i, smallest);
-            minHeapify(smallest);
         }
     }
 

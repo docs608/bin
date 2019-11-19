@@ -17,8 +17,10 @@ public class RadixSort implements Sort {
         // Do counting sort for every digit. Note that instead 
         // of passing digit number, exp is passed. exp is 10^i 
         // where i is current digit number 
-        for (int exp = 1; max/exp > 0; exp *= 10) 
+        for (int exp = 1; max/exp > 0; exp *= 10) {
             countSort(arr, exp);
+            printArray(arr);
+        }
     }
 	
 	private void countSort(int arr[], int exp) {
@@ -55,5 +57,12 @@ public class RadixSort implements Sort {
                 max = arr[i]; 
         return max;
     }
+	
+	private void printArray(int[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + ", ");
+		}
+		System.out.println();
+	}
 	
 }

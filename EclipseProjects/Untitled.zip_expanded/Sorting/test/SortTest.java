@@ -42,7 +42,8 @@ public class SortTest {
 //		int[] elements = {-3, 2, 2, 5, 5, 2, 8, 7, -9, 6, 5};
 //		int[] elements = { 3, 2, 2, 5, 5, 2, 8, 7,  9, 6, 5};    // Only for Radix sort.
 //		int[] elements = { 4, 3, 0, 1, 2};                       // Only for Cycle sort.
-		int[] elements = { 4, 3, 4, 1, 2};                       // Only for Cycle sort.
+//		int[] elements = { 4, 3, 4, 1, 2};                       // Only for Cycle sort.
+		int[] elements = {185, 3, 9, 481};
 		sorter.sort(elements);
 		SortingUtility.printArray(elements);
 		assertTrue(validate(elements));

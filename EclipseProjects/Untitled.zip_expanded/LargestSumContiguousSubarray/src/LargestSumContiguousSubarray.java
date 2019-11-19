@@ -13,12 +13,12 @@ public class LargestSumContiguousSubarray {
 				max_so_far = max_ending_here; 
 				start = s; 
 				end = i; 
-			} 
+			}
 
 			if (max_ending_here < 0) { 
 				max_ending_here = 0; 
 				s = i + 1; 
-			} 
+			}
 		}
 		System.out.println("Maximum contiguous sum is " + max_so_far);
 		System.out.println("Starting index " + start);

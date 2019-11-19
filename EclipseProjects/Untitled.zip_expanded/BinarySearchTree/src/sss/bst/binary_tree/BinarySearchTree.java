@@ -311,7 +311,9 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 	}
 
 	private Node<T> restore(T[] pre, int preL, int preR, T[] in, int inL, int inR) {
-		if (preL <= preR) {
+		if (preL > preR) {
+			return null;
+		} else {
 			int count = 0;
 			while (!(pre[preL] == in[inL + count]))
 				count++;
@@ -321,7 +323,6 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>,
 			temp.right = restore(pre, preL + count + 1, preR, in, inL + count + 1, inR);
 			return temp;
 		}
-		return null;
 	}
 	
 
