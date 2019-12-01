@@ -25,11 +25,11 @@ public class MinimumOperationRequired1 {
 				visited.add(temp.val);
 
 				if (temp.val == target) { 
-					return temp.steps; 
+					return temp.steps;
 				} 
 
-				int mul = temp.val * 2; 
-				int sub = temp.val - 1; 
+				int mul = temp.val * 2;
+				int sub = temp.val - 1;
 
 				// given constraints 
 				if (mul > 0 && mul < 1000) { 

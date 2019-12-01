@@ -18,13 +18,12 @@ public class StringPermutation {
 		str.setCharAt(pos2, t1);
 	}
 
-	static void doPermWithRepetition(String prefix, String str)
-	{
+	static void doPermWithRepetition(String prefix, String str) {
 		if(prefix.length()==str.length()) {
-			System.out.println(prefix); return; 
+			System.out.println(prefix);
+		} else {
+			for(int i=0; i<str.length(); i++)
+				doPermWithRepetition(prefix + (str.charAt(i)), str);
 		}
-
-		for(int i=0; i<str.length(); i++)
-			doPermWithRepetition(prefix + (str.charAt(i)), str);
 	}
 }
